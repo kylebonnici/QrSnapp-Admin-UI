@@ -1,0 +1,35 @@
+.mat-table th,
+.mat-table td {
+    padding-right: 10px;
+}
+
+.mat-table th:last-child,
+.mat-table td:last-child {
+    padding-right: 0;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 99px);
+}
+
+.mat-table {
+    overflow: auto;
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+.mat-column-select {
+    overflow: visible;
+}
+
+.table-container {
+    position: relative;
+    overflow: auto;
+}

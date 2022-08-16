@@ -1,0 +1,62 @@
+<mat-sidenav-container class="app-sidenav-container">
+    <app-toolbar class="app-toolbar-content mat-elevation-z5"
+                 (toggleNotificationsSidenav)="notificationSidenav.toggle()">
+    </app-toolbar>
+
+    <mat-sidenav cdkScrollable
+                 #notificationSidenav class="app-sidenav mat-elevation-z10"
+                 mode="over"
+                 position="end">
+        <mat-nav-list>
+            <div class="notifications-title"><h2>{{'NOTIFICATIONS.TITLE' | translate}}</h2>
+                <button mat-button
+                        [disabled]="notificationsService.countItems() === 0"
+                        (click)="notificationsService.clearAll()">{{'COMMON.ACTION.CLEAR_ALL' | translate}}
+                </button>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let key of notificationsService.getNotificationKeys()">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title class="notification-title">
+                            {{'NOTIFICATION.TYPE.' + key + '.TITLE' | uppercase | translate}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <button mat-button
+                                    (click)="notificationsService.clearGroup(key)">{{'COMMON.ACTION.CLEAR' | translate}}
+                            </button>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <div *ngFor="let notification of notificationsService.getSameTypeNotification(key)">
+                            <mat-divider></mat-divider>
+                            <div class="notification-container" >
+                                <div class="notification-container-data">
+                                    <div>{{'NOTIFICATION.TYPE.' + key + '.DESCRIPTION' | uppercase | translate:getNotificationMergedMetadata(notification)}}<br>{{getNotificationErrorMessage(notification)}}</div>
+                                    <div class="notification-timestamp">{{notification.timestamp | date:'medium'}}
+                                        <button mat-icon-button (click)="notificationsService.clearItem(notification)"><mat-icon>close</mat-icon></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <p class="notifications-empty" *ngIf="notificationsService.countItems() === 0">{{'NOTIFICATIONS.LABEL.NO_NOTIFICATIONS' | translate}}</p>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <div [class]="(!stripeSubscriptionsService.subscription ? 'with-banner wrapper' : 'wrapper' )" cdkScrollable>
+        <mat-toolbar color="accent" *ngIf="!stripeSubscriptionsService.subscription">
+            <span>{{'COMMON.SUBSCRIPTION.LABEL.TRIAL_ACCOUNT' | translate}}</span>
+            <button color="primary"
+                    mat-button
+                    (click)="manageSubscription()">
+                {{'COMMON.LABEL.SUBSCRIPTIONS' | translate}}
+            </button>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container>

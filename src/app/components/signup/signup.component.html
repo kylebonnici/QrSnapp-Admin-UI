@@ -1,0 +1,83 @@
+<div class="container">
+    <div class="center-card mat-elevation-z10">
+        <mat-toolbar color="primary">{{'COMMON.TOOLTIP.SIGN_UP' | translate}}</mat-toolbar>
+        <mat-progress-bar [value]="100" [mode]="mode"></mat-progress-bar>
+        <mat-card>
+            <mat-card-content>
+                <div class="flex-row">
+                    <mat-form-field>
+                        <label>
+                            <input matInput [placeholder]="'COMMON.LABEL.NAME' | translate" [formControl]="name" required>
+                        </label>
+                        <mat-error *ngIf="name.invalid">{{getErrorMessage(name)}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>
+                            <input matInput [placeholder]="'COMMON.LABEL.SURNAME' | translate" [formControl]="surname" required>
+                        </label>
+                        <mat-error *ngIf="surname.invalid">{{getErrorMessage(surname)}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>
+                            <input matInput [placeholder]="'COMMON.LABEL.EMAIL' | translate" [formControl]="email" type="email"
+                                   required>
+                        </label>
+                        <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <label>
+                            <input type="text"
+                                   matInput
+                                   [formControl]="username"
+                                   [placeholder]="'COMMON.LABEL.USERNAME' | translate" required>
+                        </label>
+                        <mat-error
+                                *ngIf="username.invalid">{{getErrorMessage(username)}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <label>
+                            <input type="password"
+                                   matInput
+                                   [formControl]="newPassword"
+                                   placeholder="New Password"
+                                   required>
+                        </label>
+                        <mat-error *ngIf="newPassword.invalid">{{getErrorMessage(newPassword)}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <label>
+                            <input type="password"
+                                   matInput
+                                   [formControl]="confirmPassword"
+                                   placeholder="Confirm Password"
+                                   required>
+                        </label>
+                        <mat-error *ngIf="confirmPassword.invalid">{{getErrorMessage(confirmPassword)}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <p class="info" *ngIf="bOk">{{'COMMON.MESSAGE.EMAIL_SENT' | translate}}</p>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="action-buttons-container">
+                    <button mat-button
+                            (click)="login()"
+                            color="primary"
+                            class="btn waves-effect waves-light">
+                        {{'COMMON.LABEL.LOG_IN' | translate}}
+                    </button>
+                    <button mat-button
+                            [disabled]="!isValid()"
+                            (click)="signup()"
+                            color="primary"
+                            class="btn waves-effect waves-light">
+                        {{'COMMON.LABEL.SIGN_UP' | translate}}
+                    </button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

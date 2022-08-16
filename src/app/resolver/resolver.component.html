@@ -1,0 +1,12 @@
+<div class="page">
+<div class="error">
+    <div *ngIf="error" class="logoError">
+    </div>
+    <div *ngIf="!error" class="logo">
+    </div>
+    <div class="message">
+        <p>{{message | translate}}</p>
+    </div>
+    <mat-progress-spinner *ngIf="loading" [value]="100" mode="indeterminate"></mat-progress-spinner>
+</div>
+</div>

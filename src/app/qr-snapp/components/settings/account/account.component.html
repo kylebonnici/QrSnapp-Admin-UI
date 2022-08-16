@@ -1,0 +1,45 @@
+<div class="top-bar">
+    <span>{{pageTranslationID + 'TITLE' | translate}}</span>
+</div>
+<div class="table-container">
+    <mat-progress-bar [mode]="getProgressBarMode()" value="100"></mat-progress-bar>
+    <mat-card class="card">
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item>
+                    {{'COMMON.LABEL.NAME' | translate}}:
+                    <span class="spacer"></span>
+                    <div class="info">{{user.name }}</div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    {{'COMMON.LABEL.SURNAME' | translate}}:
+                    <span class="spacer"></span>
+                    <div class="info">{{user.surname }}</div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    {{'COMMON.LABEL.USERNAME' | translate}}:
+                    <span class="spacer"></span>
+                    <div class="info">{{user.username }}</div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    {{'COMMON.LABEL.EMAIL' | translate}}:
+                    <span class="spacer"></span>
+                    <div class="info">{{user.email }}</div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    {{'COMMON.LABEL.PASSWORD' | translate}}:
+                    <span class="spacer"></span>
+                    <a mat-raised-button
+                       [disabled]="queryInProgress != 0"
+                       color="accent"
+                       (click)="changePassword()">{{'COMMON.ACTION.CHANGE_PASSWORD' | translate}}</a>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list>
+        </mat-card-content>
+    </mat-card>
+</div>

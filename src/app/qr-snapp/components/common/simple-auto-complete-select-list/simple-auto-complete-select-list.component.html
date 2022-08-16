@@ -1,0 +1,18 @@
+<mat-form-field>
+    <label>
+        <input type="text"
+               [placeholder]="placeholder"
+               matInput
+               [value]="formControl.value"
+               [formControl]="formControl"
+               [matAutocomplete]="auto"
+               (focusout)="autoComplete()"
+               [required]="required">
+    </label>
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let data of valuesObservable | async" [value]="data.value">
+            {{data.value}}
+        </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="!valid">{{errorMessage}}</mat-error>
+</mat-form-field>

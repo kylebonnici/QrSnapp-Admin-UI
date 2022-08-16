@@ -1,0 +1,37 @@
+<mat-toolbar color="primary">
+    <div class="after-sidenav">
+        <div class="left">
+            <button mat-icon-button
+                    (click)="router.navigate(['/profile/' + authenticationService.getCurrentProfile() + '/dashboard'])"
+                    [matTooltip]="'COMMON.TOOLTIP.HOME' | translate">
+                <mat-icon>dashboard</mat-icon>
+            </button>
+            <button mat-icon-button
+                    (click)="back()"
+                    [matTooltip]="'COMMON.TOOLTIP.BACK' | translate">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+        </div>
+        <div class="center">
+        </div>
+        <div class="right">
+            <button mat-icon-button
+                    (click)="toggleNotificationsSidenav.emit()"
+                    [matTooltip]="'COMMON.TOOLTIP.NOTIFICATIONS' | translate">
+                <mat-icon>notifications</mat-icon>
+            </button>
+
+            <button mat-icon-button
+                    [matTooltip]="'COMMON.TOOLTIP.MY_ACCOUNT' | translate"
+                    [routerLink]="['/profile/' + this.authenticationService.getCurrentProfile() + '/settings/account']">
+                <mat-icon>account_box</mat-icon>
+            </button>
+
+            <button mat-icon-button
+                    [matTooltip]="'COMMON.TOOLTIP.LOG_OUT' | translate"
+                    (click)="authenticationService.logout()">
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </div>
+    </div>
+</mat-toolbar>

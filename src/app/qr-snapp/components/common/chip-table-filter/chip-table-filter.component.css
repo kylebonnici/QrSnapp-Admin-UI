@@ -1,0 +1,23 @@
+.chip-filters {
+    display: flex;
+    padding: 15px 25px;
+}
+
+.filter-types {
+    margin-right: 25px;
+}
+
+.filter-input {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .filter-types {
+        width: 100%;
+    }
+
+    .chip-filters {
+        display: flex;
+        flex-direction: column;
+    }
+}

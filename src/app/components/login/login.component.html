@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="center-card mat-elevation-z10">
+        <mat-toolbar color="primary">{{'COMMON.LABEL.LOG_IN' | translate}}</mat-toolbar>
+        <mat-progress-bar [value]="100" [mode]="mode"></mat-progress-bar>
+        <mat-card>
+            <mat-card-content>
+                <div class="flex-row icon-input">
+                    <mat-icon>perm_identity</mat-icon>
+                    <mat-form-field>
+                        <label>
+                            <input type="text"
+                                   matInput
+                                   [formControl]="usernameFormControl"
+                                   [placeholder]="'COMMON.LABEL.USERNAME' | translate">
+                        </label>
+                        <mat-error
+                                *ngIf="usernameFormControl.invalid">{{getErrorMessage(usernameFormControl)}}</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="flex-row icon-input">
+                    <mat-icon>lock_open</mat-icon>
+                    <mat-form-field>
+                        <label>
+                            <input type="password"
+                                   matInput
+                                   [formControl]="passwordFormControl"
+                                   (keyup.enter)="passwordFormControl.value && login()"
+                                   [placeholder]="'COMMON.LABEL.PASSWORD' | translate">
+                        </label>
+                        <mat-error
+                                *ngIf="passwordFormControl.invalid">{{getErrorMessage(passwordFormControl)}}</mat-error>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="action-buttons-container">
+                    <button mat-button
+                            (click)="signup()"
+                            color="primary"
+                            class="btn waves-effect waves-light">
+                        {{'COMMON.LABEL.SIGN_UP' | translate}}
+                    </button>
+                    <button mat-button
+                            (click)="forgotPassword()"
+                            color="primary"
+                            class="btn waves-effect waves-light">
+                        {{'COMMON.LABEL.FORGOT_PASSWORD' | translate}}
+                    </button>
+                    <button mat-button
+                            (click)="login()"
+                            color="primary"
+                            class="btn waves-effect waves-light">
+                        {{'COMMON.LABEL.LOG_IN' | translate}}
+                    </button>
+                </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

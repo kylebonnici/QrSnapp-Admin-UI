@@ -1,0 +1,167 @@
+<div class="table-container">
+    <h2>{{pageTranslationID + (qrCodeRuleCopy? 'EDIT': 'ADD') + '_TITLE' | translate}}</h2>
+    <mat-accordion>
+        <mat-expansion-panel  [expanded]="openGeneral" (opened)="openGeneral=true" (closed)="openGeneral=false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{pageTranslationID + 'LABEL.GENERAL' | translate}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="container">
+                <p>
+                    {{pageTranslationID + 'LABEL.GENERAL.DESCRIPTION' | translate}}
+                </p>
+                <mat-slide-toggle [(ngModel)]="isEnabled">{{pageTranslationID + 'LABEL.ENABLED' | translate}}</mat-slide-toggle>
+                <mat-form-field>
+                    <label>
+                        <input matInput type="number" [placeholder]="pageTranslationID + 'LABEL.PRIORITY' | translate"
+                               [formControl]="priority" required>
+                    </label>
+                    <mat-error *ngIf="priority.invalid">{{getErrorMessage(priority)}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <label>
+                        <input matInput [placeholder]="pageTranslationID + 'LABEL.FRIENDLY_NAME' | translate"
+                               [formControl]="friendlyName" required>
+                    </label>
+                    <mat-error *ngIf="friendlyName.invalid">{{getErrorMessage(friendlyName)}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <label>
+                        <input matInput type="url" [placeholder]="pageTranslationID + 'LABEL.REDIRECT_URL' | translate"
+                               [formControl]="defaultRedirect" required>
+                    </label>
+                    <mat-error *ngIf="defaultRedirect.invalid">{{getErrorMessage(defaultRedirect)}}</mat-error>
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{pageTranslationID + 'LABEL.TIME_RULES' | translate}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+                <div class="container">
+                    <p>
+                        {{pageTranslationID + 'LABEL.TIME_RULES.DESCRIPTION' | translate}}
+                    </p>
+
+                    <mat-form-field>
+                        <label>
+                            <input matInput
+                                   [matDatepicker]="pickerFrom"
+                                   [formControl]="fromValid"
+                                   [placeholder]="'COMMON.LABEL.VALID_FROM' | translate"
+                                   >
+                        </label>
+                        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFrom></mat-datepicker>
+                        <mat-error *ngIf="fromValid.invalid">{{getErrorMessage(fromValid)}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>
+                            <input matInput
+                                   [matDatepicker]="pickerTo"
+                                   [formControl]="toValid"
+                                   [placeholder]="'COMMON.LABEL.VALID_TO' | translate"
+                                   >
+                        </label>
+                        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerTo></mat-datepicker>
+                        <mat-error *ngIf="toValid.invalid">{{getErrorMessage(toValid)}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>
+                            <input matInput type="time" [placeholder]="'COMMON.LABEL.FROM_TIME' | translate"
+                                   [formControl]="fromTime">
+                        </label>
+                        <mat-error *ngIf="fromTime.invalid">{{getErrorMessage(fromTime)}}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <label>
+                            <input matInput type="time" [placeholder]="'COMMON.LABEL.TO_TIME' | translate"
+                                   [formControl]="toTime">
+                        </label>
+                        <mat-error *ngIf="toTime.invalid">{{getErrorMessage(toTime)}}</mat-error>
+                    </mat-form-field>
+
+                    <section class="nested-section">
+                        <p>{{pageTranslationID + 'LABEL.DAY_OF_THE_WEEK' | translate}}</p>
+                        <span>
+                        <ul>
+                          <li *ngFor="let dayOfWeek of daysOfTheWeek">
+                            <mat-checkbox [(ngModel)]="dayOfWeek.selected"
+                                          color="primary">
+                              {{'COMMON.ENUM.DAY_OF_THE_WEEK.' + dayOfWeek.name | uppercase | translate}}
+                            </mat-checkbox>
+                          </li>
+                        </ul>
+                      </span>
+                    </section>
+                </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{pageTranslationID + 'LABEL.USAGE_RULES' | translate}}
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="container">
+                <p>
+                    {{pageTranslationID + 'LABEL.USAGE_RULES.DESCRIPTION' | translate}}
+                </p>
+                <mat-form-field>
+                    <label>
+                        <input matInput type="number" [placeholder]="pageTranslationID + 'LABEL.COUNT_PERSISTENCE_DURATION' | translate"
+                               [formControl]="countPersistenceDuration">
+                    </label>
+                    <mat-error *ngIf="countPersistenceDuration.invalid">{{getErrorMessage(countPersistenceDuration)}}</mat-error>
+                </mat-form-field>
+                <app-simple-auto-complete-select-list
+                        [placeholder]="pageTranslationID + 'LABEL.COMPARISON_TYPE' | translate"
+                        [readOnly]="false"
+                        [startValue]="startValueComparisonType"
+                        [values]="validStates"
+                        (noItemSelected)="selectedComparisonType = null"
+                        (itemSelected)="selectedComparisonType = $event"
+                        required="false"
+                        forceMatch="true"
+                ></app-simple-auto-complete-select-list>
+                <mat-form-field *ngIf="selectedComparisonType">
+                    <label>
+                        <input matInput type="number"
+                               [placeholder]="'QRCODE_RULE.LABEL.' + selectedComparisonType + '.MIN' | uppercase | translate"
+                               [formControl]="min">
+                    </label>
+                    <mat-error *ngIf="min.invalid">{{getErrorMessage(min)}}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field *ngIf="selectedComparisonType==='BETWEEN' || selectedComparisonType==='EXCLUSION'">
+                    <label>
+                        <input matInput type="number"
+                               [placeholder]="'QRCODE_RULE.LABEL.' + selectedComparisonType + '.MAX' | uppercase | translate"
+                               [formControl]="max">
+                    </label>
+                    <mat-error *ngIf="max.invalid">{{getErrorMessage(max)}}</mat-error>
+                </mat-form-field>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <div class="buttons">
+        <button [disabled]="!isValid()" mat-button color="primary" (click)="save()">
+            <mat-icon>save</mat-icon>
+            Save
+        </button>
+        <button mat-button color="primary" (click)="dismiss.emit()">
+            <mat-icon>cancel</mat-icon>
+            Cancel
+        </button>
+    </div>
+</div>

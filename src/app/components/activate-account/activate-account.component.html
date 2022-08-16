@@ -1,0 +1,25 @@
+<div class="container" >
+  <mat-card class="center-card mat-elevation-z10">
+    <mat-card-content>
+      <mat-toolbar color="primary">{{'COMMON.LABEL.ACTIVATE_ACCOUNT' | translate}}</mat-toolbar>
+      <br>
+      <div>
+        <p *ngIf="bSuccessMessage">{{ successMessage | uppercase | translate }}</p>
+      </div>
+      <div>
+        <p *ngIf="bMessage">{{ message | uppercase | translate }}</p>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="flex-row">
+        <button mat-button
+                *ngIf="bMessage"
+                (click)="requestNewToken()"
+                color="primary"
+                class="btn waves-effect waves-light">
+          {{'COMMON.LABEL.REQUEST_TOKEN' | translate}}
+        </button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{ title | uppercase | translate }}</h2>
+<mat-dialog-content>
+    <div class="container">
+        <mat-slide-toggle [(ngModel)]="isEnabled">{{'QRCODE.LABEL.ENABLED' | translate}}</mat-slide-toggle>
+        <mat-form-field>
+            <label>
+                <input matInput [placeholder]="'QRCODE.LABEL.FRIENDLY_NAME' | translate" [formControl]="friendlyName" required>
+            </label>
+            <mat-error *ngIf="friendlyName.invalid">{{getErrorMessage(friendlyName)}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <label>
+                <input matInput [placeholder]="'QRCODE.LABEL.FALLBACK_URL' | translate" [formControl]="defaultRedirect" required>
+            </label>
+            <mat-error *ngIf="defaultRedirect.invalid">{{getErrorMessage(defaultRedirect)}}</mat-error>
+        </mat-form-field>
+
+        <app-simple-auto-complete-select-list
+                [placeholder]="'QRCODE.LABEL.ZONE_ID' | translate"
+                [readOnly]="false"
+                [startValue]="startZoneId"
+                [values]="validZoneIds"
+                (noItemSelected)="selectedZoneId = null"
+                (itemSelected)="selectedZoneId = $event"
+                required="false"
+                forceMatch="true"
+        ></app-simple-auto-complete-select-list>
+
+        <mat-form-field>
+            <label>
+                <input matInput type="number" [placeholder]="'QRCODE.LABEL.MAX_SCANS' | translate"
+                       [formControl]="maxScans">
+            </label>
+            <mat-error *ngIf="maxScans.invalid">{{getErrorMessage(maxScans)}}</mat-error>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button [disabled]="!isValid()" mat-button color="primary" (click)="save()">
+        <mat-icon>save</mat-icon>
+        Save
+    </button>
+    <button mat-button color="primary" (click)="dismiss()">
+        <mat-icon>cancel</mat-icon>
+        Cancel
+    </button>
+</mat-dialog-actions>

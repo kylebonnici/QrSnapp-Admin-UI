@@ -1,0 +1,88 @@
+<h2 mat-dialog-title>{{ title | uppercase | translate }}</h2>
+<mat-dialog-content>
+    <div class="container">
+
+        <div class="flex-row">
+            <mat-form-field>
+                <label>
+                    <input matInput [placeholder]="'COMMON.LABEL.NAME' | translate" [formControl]="name" required>
+                </label>
+                <mat-error *ngIf="name.invalid">{{getErrorMessage(name)}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <label>
+                    <input matInput [placeholder]="'COMMON.LABEL.SURNAME' | translate" [formControl]="surname" required>
+                </label>
+                <mat-error *ngIf="surname.invalid">{{getErrorMessage(surname)}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <label>
+                <input matInput [placeholder]="'COMMON.LABEL.USERNAME' | translate" [formControl]="username" required>
+            </label>
+            <mat-error *ngIf="username.invalid">{{getErrorMessage(username)}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <label>
+                <input matInput [placeholder]="'COMMON.LABEL.EMAIL' | translate" [formControl]="email" type="email"
+                       required>
+            </label>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
+        </mat-form-field>
+
+        <app-simple-auto-complete-select-list
+                *ngIf="!isMyOwnUser() && bEdit"
+                [placeholder]="'COMMON.LABEL.ACCOUNT_STATE' | translate"
+                [readOnly]="isStateReadOnly()"
+                [startValue]="this.user.accountState"
+                [values]="validStates"
+                (noItemSelected)="user.accountState = null"
+                (itemSelected)="user.accountState = $event"
+                required="true"
+                forceMatch="true"
+                [errorMessage]="'COMMON.VALIDATION.REQUIRED' | translate"
+        ></app-simple-auto-complete-select-list>
+
+        <div class="flex-row" *ngIf="!isMyOwnUser()">
+            <mat-form-field>
+                <label>
+                    <input matInput
+                           [matDatepicker]="pickerFrom"
+                           [formControl]="fromValid"
+                           [placeholder]="'COMMON.LABEL.VALID_FROM' | translate"
+                           readonly>
+                </label>
+                <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFrom></mat-datepicker>
+                <mat-error *ngIf="fromValid.invalid">{{getErrorMessage(fromValid)}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <label>
+                    <input matInput
+                           [matDatepicker]="pickerTo"
+                           [formControl]="toValid"
+                           [placeholder]="'COMMON.LABEL.VALID_TO' | translate"
+                           readonly>
+                </label>
+                <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+                <mat-datepicker #pickerTo></mat-datepicker>
+                <mat-error *ngIf="toValid.invalid">{{getErrorMessage(toValid)}}</mat-error>
+            </mat-form-field>
+        </div>
+
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button [disabled]="!isValid()" mat-button color="primary" (click)="save()">
+        <mat-icon>save</mat-icon>
+        Save
+    </button>
+    <button mat-button color="primary" (click)="dismiss()">
+        <mat-icon>cancel</mat-icon>
+        Cancel
+    </button>
+</mat-dialog-actions>

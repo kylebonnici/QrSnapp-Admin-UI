@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>{{ title | uppercase | translate}}</h2>
+<mat-dialog-content>
+    <qrcode elementType="url" [qrdata]="qrCodeString" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    <p>URL: {{qrCodeString}}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button color="primary" (click)="cancel()">
+        <mat-icon>cancel</mat-icon> {{'COMMON.ACTION.CLOSE' | translate}}
+    </button>
+</mat-dialog-actions>

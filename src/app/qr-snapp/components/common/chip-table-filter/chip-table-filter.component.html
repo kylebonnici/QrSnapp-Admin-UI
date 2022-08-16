@@ -1,0 +1,41 @@
+<div class="chip-filters">
+    <mat-form-field class="filter-types">
+        <mat-label>{{'COMMON.TABLE.FILTER.LABEL.FILTER_TYPE' | translate}}</mat-label>
+        <mat-select (valueChange)="onChangeSelectedFilterType($event)">
+            <mat-option *ngFor="let filterType of filterTypes" [value]="filterType">
+                {{pageTranslationID + 'TABLE.FILTER.TYPE.CODE.' + filterType.code | uppercase | translate}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="filter-input">
+        <mat-label>{{'COMMON.TABLE.FILTER.LABEL.FILTER' | translate}}</mat-label>
+        <mat-chip-list #chipList aria-label="Filter selection">
+            <mat-chip *ngFor="let filter of filters" [selectable]="false"
+                      [removable]="true" (removed)="removeFilter(filter)">
+                {{pageTranslationID + 'TABLE.FILTER.TYPE.CODE.' + filter.filterType  | uppercase | translate}}: {{filter.value}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <label>
+                <input [placeholder]="selectedFilterType?
+                            (pageTranslationID + 'TABLE.FILTER.TYPE.CODE.' + selectedFilterType.code | uppercase | translate) :
+                            ('COMMON.TABLE.FILTER.LABEL.SELECT_FILTER_TYPE' | translate)"
+                       #filterInput
+                       [formControl]="filterInputCtrl"
+                       [matChipInputFor]="chipList"
+                       [matAutocomplete]="auto"
+                       [readOnly]="selectedFilterType === undefined"
+                       [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                       (matChipInputTokenEnd)="addFilter($event)">
+            </label>
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let filterOption of autoSelectOptions" [value]="filterOption">
+                {{filterOption}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <button mat-button *ngIf="filters.length > 0" matSuffix mat-icon-button aria-label="Clear"
+            (click)="filters=[];">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

@@ -1,0 +1,13 @@
+mat-drawer-container {
+    min-height: 100%;
+}
+
+mat-drawer {
+    max-width: 450px;
+}
+
+@media (max-width: 450px) {
+    mat-drawer {
+        max-width: 100%;
+    }
+}

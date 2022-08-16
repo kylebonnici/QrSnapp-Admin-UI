@@ -1,0 +1,50 @@
+<mat-progress-bar [mode]="progressBarMode" value="100"></mat-progress-bar>
+<div class="table-container">
+    <table mat-table #table [dataSource]="dataSourceObj" matSort>
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()"
+                              [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(row) : null;"
+                              [checked]="selection.isSelected(row)"
+                              [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+
+        <ng-container
+                *ngFor="let tableColumnDefinition of tableColumnDefinitions"
+                [matColumnDef]="tableColumnDefinition.code">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>{{pageTranslationID + 'TABLE.COLUMN.NAME.' + tableColumnDefinition.code | uppercase | translate}}</th>
+            <td mat-cell *matCellDef="let user"> {{tableColumnDefinition.getData(user)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>{{'COMMON.TABLE.COLUMN.NAME.ACTIONS' | translate}}</th>
+            <td class="actions" mat-cell *matCellDef="let row">
+                <button *ngFor="let tableAction of tableActions"
+                        (click)="tableAction.action(row)"
+                        [disabled]="tableAction.isDisabled(row)"
+                        mat-icon-button
+                        [color]="tableAction.color(row)"
+                        [matTooltip]="tableAction.tooltip(row)"
+                >
+                    <mat-icon>{{tableAction.matIcon}}</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
+    </table>
+</div>
+
+<mat-paginator #paginator [pageSizeOptions]="[20, 50, 100]" >
+</mat-paginator>

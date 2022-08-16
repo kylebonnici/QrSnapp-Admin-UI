@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container > * {
+    width: 100%;
+}
+
+mat-dialog-actions {
+    justify-content: flex-end;
+}
+
+.nested-section ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+
+.nested-section ul li {
+    padding-right: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+    float: right;
+}

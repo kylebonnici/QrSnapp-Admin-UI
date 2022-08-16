@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+.top-bar {
+    padding: 5px 15px;
+    background: white;
+}
+
+.table-container {
+    margin: 15px;
+}
+
+.actions-bar {
+    padding: 15px;
+    background: #f5f5f5;
+}
+
+mat-slide-toggle {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

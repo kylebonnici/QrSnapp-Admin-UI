@@ -1,0 +1,41 @@
+$iconWidth: 56px;
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.after-sidenav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 721px) {
+  .above-sidnav {
+    min-width: 223px;
+  }
+}
+
+
+
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

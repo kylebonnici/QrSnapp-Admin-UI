@@ -1,0 +1,47 @@
+.table-container {
+    background: white;
+    border-radius: 10px;
+    min-height: calc(100vh - 160px);
+    padding: 15px;
+}
+
+.title {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 12px;
+}
+
+.items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.item {
+    width: 170px;
+    display: flex;
+    flex-direction: column;
+    max-width: 170px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.item:hover {
+    background: #79797910;
+}
+
+mat-icon {
+    font-size: 50px;
+    height: 50px;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 10px;
+}
+
+label {
+    text-align: center;
+}

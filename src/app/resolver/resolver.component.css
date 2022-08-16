@@ -1,0 +1,49 @@
+.logoError {
+    background: url("src/assets/img/SnappLogo.png");
+    background-size: contain;
+    max-width: 80vw;
+    max-height: 80vh;
+    width: 400px;
+    height: 210px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.logo {
+    background: url("src/assets/img/QrSnappLogo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    max-width: 80vw;
+    max-height: 80vh;
+    width: 600px;
+    height: 210px;
+}
+
+.error {
+    max-width: 80vw;
+    max-height: 80vh;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+}
+
+.message {
+    font-family: 'Lapsus Pro', serif;
+    color: #6739b6;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 30px;
+}
+
+.page {
+    background: #d4d4d4;
+    height: 100vh;
+    width: 100vw;
+}
+
+mat-progress-spinner {
+    margin-left: auto;
+    margin-right: auto;
+}

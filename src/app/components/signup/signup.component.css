@@ -1,0 +1,38 @@
+.container {
+    background-size: 320px;
+    background-position: center 10vh;
+    background-repeat: no-repeat;
+    background-image: url("/../assets/img/QrSnappLogo.png");
+    background-color: #d4d4d4;
+}
+
+mat-form-field {
+    padding-top: 10px;
+    padding-left: 5px;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.center-card {
+    max-width: 400px;
+    width: 400px;
+}
+
+.action-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.info {
+    border-radius: 5px;
+    background-color: #dcffdc;
+    color: #009600;
+    padding: 10px;
+}

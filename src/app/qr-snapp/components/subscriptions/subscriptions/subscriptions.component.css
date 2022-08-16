@@ -1,0 +1,8 @@
+mat-panel-title,
+mat-panel-description {
+    flex-grow: unset;
+}
+
+mat-panel-description {
+    margin-left: auto;
+}

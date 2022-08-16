@@ -1,0 +1,20 @@
+<div class="top-bar">
+  <span>{{pageTranslationID + 'TITLE' | translate}}: '{{roleService.user.username }}' ({{ roleService.user.name }} {{roleService.user.surname }})</span>
+</div>
+<div class="mat-elevation-z4 table-container">
+  <app-chip-table-filter [filters]="filters"
+                         [filterTypes]="filterTypes"
+                         [pageTranslationID]="pageTranslationID"
+                         (filterChangedEvent)="applyFilter()">
+  </app-chip-table-filter>
+
+  <app-simple-table [displayColumns]="getDisplayColumns()"
+                    [progressBarMode]="getProgressBarMode()"
+                    [dataSource]="dataSource"
+                    [tableActions]="tableActions"
+                    [pageTranslationID]="pageTranslationID"
+                    [tableColumnDefinitions]="tableColumnDefinitions"
+                    [selection]="selection"
+  ></app-simple-table>
+</div>
+

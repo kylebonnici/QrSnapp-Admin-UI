@@ -1,0 +1,66 @@
+.app-sidenav-container {
+  height: 100%;
+  min-height: 100%;
+}
+
+.app-sidenav {
+  width: 320px;
+}
+
+.wrapper {
+  margin: 64px 0 0;
+  height: 100%;
+}
+
+.app-toolbar-content {
+  position: fixed;
+  z-index: 200;
+  width: 100%;
+}
+
+mat-icon {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.active-route {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.notifications-title {
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notifications-empty {
+  padding: 25px;
+}
+
+.notification-container {
+  display: flex;
+  padding: 10px 0;
+  flex-direction: column;
+}
+
+.notification-timestamp {
+  font-size: 12px;
+}
+
+.notifications-title h2 {
+  margin: 0;
+}
+
+.mat-nav-list {
+  padding-top: 0;
+}
+
+.notification-title {
+  align-items: center;
+  width: 100%;
+}
+
+mat-toolbar button {
+  margin-left: 20px;
+}
